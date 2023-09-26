@@ -127,7 +127,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="20_02多态case02.cpp" />
+    <ClCompile Include="21_02二进制文件读写.cpp" />
+    <ClCompile Include="21_01文本文件读写文件.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -15,7 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="20_02多态case02.cpp">
+    <ClCompile Include="21_01文本文件读写文件.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="21_02二进制文件读写.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
