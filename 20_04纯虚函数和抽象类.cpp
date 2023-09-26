@@ -14,8 +14,37 @@ using namespace std;
 * 2.子类必须重写抽象类中的纯虚函数，否则也属于抽象类
 */
 
+class Base
+{
+public:
+	//只要有一个纯虚函数，这个类称为抽象类
+	virtual void func() = 0;     //纯虚函数
+};
+
+class Son :public Base
+{
+public:
+	void func()
+	{
+		cout << "func()" << endl;
+	}
+
+};
+
+
+void test01()
+{
+	//Base b;   抽象类无法实例化对象
+	//new Base   抽象类无法实例化对象
+	//Son s;    子类不重写纯虚函数，无法创建对象
+	Base * b=new Son;  //多态的方式调用
+	b->func();
+
+}
+
 
 int main()
 {
+	test01();
 	return 0;
 }
