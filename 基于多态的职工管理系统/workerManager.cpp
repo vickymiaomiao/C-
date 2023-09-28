@@ -207,7 +207,7 @@ int WorkerManager::get_EmpNum()
 	return num;
 }
 
-//显示职工人数
+//显示职工信息
 void WorkerManager::Show_Emp()
 {
 	if (this->m_FileIsEmpty)
@@ -224,6 +224,55 @@ void WorkerManager::Show_Emp()
 	}
 	system("pause");
 	system("cls");
+}
+//删除职工
+void WorkerManager::Del_Emp()
+{
+	if (this->m_FileIsEmpty)
+	{
+		cout << "文件不存在或者文件为空" << endl;
+	}
+	else
+	{
+		cout << "请输入需要删除的职工编号：" << endl;
+		int del_id;
+		cin >> del_id;
+		int ret = this->IsExist(del_id);
+		if (ret != -1)  //说明职工存在
+		{
+			//数组删除本质就是数据前移
+			for (int i = ret; i < this->m_EemNum-1; i++)
+			{
+				this->m_EmpArray[i] = this->m_EmpArray[i + 1];
+			}
+			//更新人数
+			this->m_EemNum--;
+			//数据同步更新到文件中
+			this->save();
+			cout << "删除成功" << endl;
+		}
+		else
+		{
+			cout << "删除失败，职工不存在" << endl;
+		}
+	}
+	system("pause");
+	system("cls");
+
+}
+//判断职工是否存在，若存在返回数组中的位置，不存在返回-1
+int WorkerManager::IsExist(int id)
+{
+	int index = -1;
+	for (int i = 0; i < this->m_EemNum; i++)
+	{
+		if (this->m_EmpArray[i]->m_Id == id)
+		{
+			index = i;
+			break;
+		}
+	}
+	return index;
 }
 
 WorkerManager::~WorkerManager()  //析构函数的实现

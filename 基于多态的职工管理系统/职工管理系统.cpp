@@ -43,6 +43,7 @@ int main()
 			wm.Show_Emp();
 			break;
 		case 3:     //É¾³ýÖ°¹¤
+			wm.Del_Emp();
 			break;
 		case 4:
 			break;
