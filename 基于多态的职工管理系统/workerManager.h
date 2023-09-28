@@ -33,6 +33,9 @@ public:
 	//文件中已存在员工的初始化
 	void init_Emp();
 
+	//显示职工信息
+	void Show_Emp();
+
 	~WorkerManager();  //析构函数
 
 

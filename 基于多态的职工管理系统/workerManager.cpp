@@ -35,7 +35,7 @@ WorkerManager::WorkerManager() //构造函数的实现
 
 	//3.文件存在，并且记录数据
 	int num = this->get_EmpNum();
-	cout << "职工人数为：" << num << endl;
+	//cout << "职工人数为：" << num << endl;
 	this->m_EemNum = num;
 	//开辟空间
 	this->m_EmpArray = new Worker * [this->m_EemNum];
@@ -205,6 +205,25 @@ int WorkerManager::get_EmpNum()
 		num++;
 	}
 	return num;
+}
+
+//显示职工人数
+void WorkerManager::Show_Emp()
+{
+	if (this->m_FileIsEmpty)
+	{
+		cout << "文件不存在或者文件为空" << endl;
+	}
+	else
+	{
+		for (int i = 0; i < this->m_EemNum; i++)
+		{
+			//利用多态调用程序接口
+			this->m_EmpArray[i]->ShowInfo();
+		}
+	}
+	system("pause");
+	system("cls");
 }
 
 WorkerManager::~WorkerManager()  //析构函数的实现
