@@ -30,6 +30,9 @@ public:
 	//统计文件中的人数
 	int get_EmpNum();
 
+	//文件中已存在员工的初始化
+	void init_Emp();
+
 	~WorkerManager();  //析构函数
 
 

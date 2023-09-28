@@ -37,6 +37,45 @@ WorkerManager::WorkerManager() //构造函数的实现
 	int num = this->get_EmpNum();
 	cout << "职工人数为：" << num << endl;
 	this->m_EemNum = num;
+	//开辟空间
+	this->m_EmpArray = new Worker * [this->m_EemNum];
+	//将文件中的数据存入数组中
+	this->init_Emp();
+	for (int i = 0; i < this->m_EemNum; i++)
+	{
+		cout << this->m_EmpArray[i]->m_Id << "  " << this->m_EmpArray[i]->m_Name
+			<< "  " << this->m_EmpArray[i]->m_DeptId << endl;
+	}
+}
+
+//文件存在并记录数据时的初始化
+void WorkerManager::init_Emp()
+{
+	ifstream ifs;
+	ifs.open(FILENAME, ios::in);
+	int id;
+	string name;
+	int did;
+	int index = 0;
+	while (ifs >> id && ifs >> name && ifs >> did)
+	{
+		Worker* worker = NULL;
+		if (did == 1)
+		{
+			worker = new Employee(id, name, did);
+		}
+		else if (did == 2)
+		{
+			worker = new Manager(id, name, did);
+		}
+		else
+		{
+			worker = new Boss(id, name, did);
+		}
+		this->m_EmpArray[index] = worker;
+		index++;
+	}
+	ifs.close();  //关闭文件
 }
 
 void WorkerManager::Show_Menu() //展示菜单
