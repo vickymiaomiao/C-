@@ -41,11 +41,12 @@ WorkerManager::WorkerManager() //构造函数的实现
 	this->m_EmpArray = new Worker * [this->m_EemNum];
 	//将文件中的数据存入数组中
 	this->init_Emp();
-	for (int i = 0; i < this->m_EemNum; i++)
-	{
-		cout << this->m_EmpArray[i]->m_Id << "  " << this->m_EmpArray[i]->m_Name
-			<< "  " << this->m_EmpArray[i]->m_DeptId << endl;
-	}
+	//测试代码
+	//for (int i = 0; i < this->m_EemNum; i++)
+	//{
+	//	cout << this->m_EmpArray[i]->m_Id << "  " << this->m_EmpArray[i]->m_Name
+	//		<< "  " << this->m_EmpArray[i]->m_DeptId << endl;
+	//}
 }
 
 //文件存在并记录数据时的初始化
