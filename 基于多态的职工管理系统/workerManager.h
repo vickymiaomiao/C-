@@ -48,6 +48,9 @@ public:
 	//查找员工
 	void Find_Emp();
 
+	//员工排序
+	void sort_Emp();
+
 	~WorkerManager();  //析构函数
 
 

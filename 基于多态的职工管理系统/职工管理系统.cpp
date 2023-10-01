@@ -51,7 +51,11 @@ int main()
 		case 5:      //查找职工
 			wm.Find_Emp();
 			break;
-		case 6:
+		case 6:     //职工排序
+			wm.sort_Emp();
+			break;
+		case 7:     //清空所有文档
+			
 			break;
 		default:
 			system("cls");   //清空屏幕

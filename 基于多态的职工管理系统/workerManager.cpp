@@ -407,6 +407,60 @@ void WorkerManager::Find_Emp()
 	system("cls");
 }
 
+//员工排序
+void WorkerManager::sort_Emp()
+{
+	if (this->m_FileIsEmpty)
+	{
+		cout << "文件不存在或者文件为空" << endl;
+		system("pause");
+		system("cls");
+	}
+	else
+	{
+		cout << "请选择排序方式:" << endl;
+		cout << "1.按职工工号进行升序" << endl;
+		cout << "2.按职工工号进行降序" << endl;
+
+		int select = 0;
+		cin >> select;
+
+		for (int i = 0; i < this->m_EemNum; i++)
+		{
+			int minormax = i;//声明最大值或者最小值的下标
+			for (int j = i+1; j < this->m_EemNum; j++)
+			{
+				if (select == 1)//升序
+				{
+					if (this->m_EmpArray[i]->m_Id > this->m_EmpArray[j]->m_Id)
+					{
+						minormax = j;
+					}
+				}
+				else   //降序
+				{
+					if (this->m_EmpArray[i]->m_Id < this->m_EmpArray[j]->m_Id)
+					{
+						minormax = j;
+					}
+				}
+			}
+			
+			//判断一开始认定的最小值或者最大值是不是计算的最大值或者最小值,如果不是，交换数据
+			if (i != minormax)
+			{
+				Worker* temp = this->m_EmpArray[i];
+				this->m_EmpArray[i] = this->m_EmpArray[minormax];
+				this->m_EmpArray[minormax] = temp;
+			}
+
+		}
+		cout << "排序成功！排序后的结果为：" << endl;
+		this->save(); //结果保存到文件中
+		this->Show_Emp();   //展示结果
+	}
+}
+
 WorkerManager::~WorkerManager()  //析构函数的实现
 {
 	if (this->m_EmpArray != NULL)   //释放堆区数据
