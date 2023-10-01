@@ -1,2 +1,4 @@
-1  vicky  3
+5  mary  1
 2  andy  1
+1  lucy  3
+4  bob  3

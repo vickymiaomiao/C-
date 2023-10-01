@@ -275,6 +275,69 @@ int WorkerManager::IsExist(int id)
 	return index;
 }
 
+//修改职工
+void WorkerManager::Mod_Emp()
+{
+	if (this->m_FileIsEmpty)
+	{
+		cout << "文件不存在或者文件为空" << endl;
+	}
+	else
+	{
+		cout << "请输入修改的职工的编号：" << endl;
+		int id;
+		cin >> id;
+		int ret=this->IsExist(id);
+		if (ret != -1)
+		{
+			//查找到职工
+			delete this->m_EmpArray[ret];
+
+			int newid = 0;
+			string newname = "";
+			int newdid = 0;
+			cout << "查到：" << id << "号职工，请输入新职工号：" << endl;
+			cin >> newid;
+			cout << "请输入新的姓名" << endl;
+			cin >> newname;
+			cout << "请输入职工的岗位：" << endl;
+			cout << "1.普通员工" << endl;
+			cout << "2.经理" << endl;
+			cout << "3.老板" << endl;
+			cin >> newdid;
+			Worker* worker = NULL;
+			switch (newdid)
+			{
+			case 1:
+				worker = new Employee(newid, newname, 1);
+				break;
+			case 2:
+				worker = new Manager(newid, newname, 2);
+				break;
+			case 3:
+				worker = new Boss(newid,newname, 3);
+				break;
+			default:
+				break;
+			}
+			//更新到数组中
+			this->m_EmpArray[ret] = worker;
+			cout << "修改成功" << endl;
+			//保存数据到文件中
+			this->save();
+		}
+		else
+		{
+			cout << "修改失败，查无此人" << endl;
+		}
+
+	}
+	//按任意键清屏
+	system("pause");
+	system("cls");
+
+}
+
 WorkerManager::~WorkerManager()  //析构函数的实现
 {
 	if (this->m_EmpArray != NULL)   //释放堆区数据
