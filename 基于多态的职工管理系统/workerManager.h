@@ -51,6 +51,9 @@ public:
 	//员工排序
 	void sort_Emp();
 
+	//清空文件
+	void Clean_File();
+
 	~WorkerManager();  //析构函数
 
 
