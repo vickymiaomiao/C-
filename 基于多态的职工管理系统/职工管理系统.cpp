@@ -48,7 +48,8 @@ int main()
 		case 4:
 			wm.Mod_Emp(); //修改职工
 			break;
-		case 5:
+		case 5:      //查找职工
+			wm.Find_Emp();
 			break;
 		case 6:
 			break;

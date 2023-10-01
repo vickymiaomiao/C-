@@ -2,3 +2,4 @@
 2  andy  1
 1  lucy  3
 4  bob  3
+3  andy  3
