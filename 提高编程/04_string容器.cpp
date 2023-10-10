@@ -201,7 +201,7 @@ void test07()
 
 /*
 * 子串
-* 从字符串中获取想要的子串
+* 从字符串中获取想要的子串,实际开发中可以获取到有效信息
 * string substr(int pos=0,int n=npos)const;
 */
 
