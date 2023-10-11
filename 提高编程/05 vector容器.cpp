@@ -133,9 +133,92 @@ void test04()
 	v1.erase(v1.begin()); 
 	printVector(v1);
 	//提供区间进行删除
-	v1.erase(v1.begin(), v1.end());
+	//v1.erase(v1.begin(), v1.end());//清空
+	//清空容器
+	v1.clear();
+	printVector(v1);
+}
+
+//存取操作
+//at [] front()：返回容器中第一个元素   back():返回容器中最后一个数据元素
+void test05()
+{
+	vector<int> v1;
+	for (int i = 0; i < 10; i++)
+	{
+		v1.push_back(i);
+		//利用at访问
+		cout << v1.at(i)<<" ";
+		//利用[]访问
+		cout << v1[i] ;
+	}
+	cout<<endl;
+	//获取第一个元素
+	cout << " first elem:" << v1.front() << endl;
+	//最后一个元素
+	cout << "end elem:" << v1.back() << endl;
+}
+
+//互换容器
+//实现两个容器内元素进行互换
+//swap(vec);
+void test06()
+{
+	vector<int>v1;
+	for (int i = 0; i < 10; i++)
+	{
+		v1.push_back(i);
+	}
 	printVector(v1);
 
+	vector<int>v2;
+	for (int i = 10; i > 0; i--)
+	{
+		v2.push_back(i);
+	}
+	printVector(v2);
+
+	cout << "swap" << endl;
+	v1.swap(v2);
+	printVector(v1);
+	printVector(v2);
+	//实际用途，可以收缩内存空间
+	vector<int>v3;
+	for (int i = 0; i < 100000; i++)
+	{
+		v3.push_back(i);
+	}
+	cout << "v3 capacity: " << v3.capacity() << endl;
+	cout << "v3 size: " << v3.size() << endl;
+	v3.resize(3);//重新指定大小后，size会改变，弹容量不变
+	cout << "v3 capacity: " << v3.capacity() << endl;
+	cout << "v3 size: " << v3.size() << endl;
+	//巧用swap收缩内存
+	vector<int>(v3).swap(v3);//匿名对象
+	cout << "v3 capacity: " << v3.capacity() << endl;
+	cout << "v3 size: " << v3.size() << endl;
+}
+
+//预留空间
+//减少vector在动态扩展容量时的扩展次数
+//reserve(int len),容器预留len个元素长度，预留位置不初始化，元素不可访问
+void test07()
+{
+	vector<int>v3;
+	//利用reserve预留空间
+	v3.reserve(100000);
+	int num = 0;//统计开辟次数   不预留空间需要开辟30次空间，预留空间只开辟一次
+	int* p = NULL;
+	for (int i = 0; i < 100000; i++)
+	{
+		v3.push_back(i);
+		if (p != &v3[0])
+		{
+			p = &v3[0];
+			num++;
+		}
+	}
+	cout << "num : " << num << endl;
 }
 
 
@@ -144,6 +227,9 @@ int main()
 	//test01();
 	//test02();
 	//test03();
-	test04();
+	//test04();
+	//test05();
+	//test06();
+	test07();
 	return 0;
 }
