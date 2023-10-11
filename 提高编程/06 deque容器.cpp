@@ -174,7 +174,9 @@ void test06()
 	d1.push_front(100);
 	d1.push_front(200);
 	printDeque(d1);
-	sort(d1.begin(), d1.end());
+	//对于支持随机访问迭代器的容器，都可以利用sort算法直接对齐进行排序
+	//vector容器也可以利用sort进行排序
+	sort(d1.begin(), d1.end());  //默认排序规则是升序
 	cout << "after sort" << endl;
 	printDeque(d1);
 }
