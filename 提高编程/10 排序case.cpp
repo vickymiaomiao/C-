@@ -42,8 +42,10 @@ bool comparePerson(Person &p1,Person &p2)
 		//年龄相同按照身高降序
 		return p1.m_Height > p2.m_Height;
 	}
-	return p1.m_Age < p2.m_Age;
-
+	else
+	{
+		return p1.m_Age < p2.m_Age;
+	}
 }
 
 int main()
