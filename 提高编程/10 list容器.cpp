@@ -1,6 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS 1   
 #include <list>
 #include <iostream>
+#include <algorithm>
 using namespace std;
 
 /*
@@ -144,12 +145,69 @@ void test04()
 	printList(L);
 }
 
+//存取 front back
+void test05()
+{
+	list<int>L;
+	//尾插
+	L.push_back(10);
+	L.push_back(20);
+	L.push_back(30);
+	L.push_back(40);
+	//不可以用[]或者at方式提供存取方式
+	//list 本质是链表不是连续的线性空间存储数据，迭代器也不支持跳跃访问
+	cout << "first elem : " << L.front() << endl;
+	cout << "last elem : " << L.back() << endl;
+
+	//验证迭代器不支持随机访问
+	list<int>::iterator it = L.begin();
+	it++; //不支持it=it+1  支持双向
+}
+
+
+bool myCompare(int val1,int val2)
+{
+	//降序 第一个数大于第二个数
+	return val1 > val2;
+
+}
+
+//反转和排序
+//将容器中的元素反转，以及将容器中的数据进行排序
+//reverse()  sort()
+void test06()
+{
+	list<int>L;
+	//尾插
+	L.push_back(20);
+	L.push_back(10);
+	L.push_back(40);
+	L.push_back(30);
+	cout << "before reverse" << endl;
+	printList(L);
+
+	L.reverse();
+	cout << "after reverse" << endl;
+	printList(L);
+	//所有不支持随机访问迭代器的容器，不可以用标准算法
+	//不支持随机访问迭代器的内容，内部会提供对应一些算法
+	cout << "after sort" << endl;
+	L.sort();     //按照升序排列
+	printList(L);
+
+	//降序实现
+	L.sort(myCompare);
+	printList(L);
+
+}
 
 int main()
 {
 	//test01();
 	//test02();
 	//test03();
-	test04();
+	//test04();
+	//test05();
+	test06();
 	return 0;
 }
