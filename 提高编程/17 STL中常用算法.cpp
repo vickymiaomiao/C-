@@ -11,7 +11,8 @@ using namespace std;
 * 常用遍历算法
 * for_each 遍历容器
 * transform 搬运容器到另一个容器中
-* find查找算法
+* find查找算法 返回迭代器
+* find_if(beg,end,_pred) 谓词  按照条件查找
 */
 //普通函数
 void print01(int val)
@@ -62,6 +63,24 @@ public:
 	int m_Age;
 };
 
+class GreaterFind
+{
+public:
+	bool operator()(int val)
+	{
+		return val > 5;
+	}
+};
+
+class Greater20
+{
+public:
+	bool operator()(Person &p)
+	{
+		return p.m_Age > 20;
+	}
+};
+
 void test_for_each_transform_find()
 {
 	vector<int>v;
@@ -99,7 +118,7 @@ void test_for_each_transform_find()
 	vector<Person>vp;
 	Person p1("vicky", 1);
 	Person p2("bob", 1);
-	Person p3("tom", 1);
+	Person p3("tom", 30);
 	Person p4("jerry", 1);
 
 	vp.push_back(p1);
@@ -116,7 +135,27 @@ void test_for_each_transform_find()
 	{
 		cout << "find it: " << it1->m_Name<<" : "<<it1->m_Age<< endl;
 	}
-
+	//find_if
+	//1、查找内置数据类型
+	vector<int>::iterator it2=find_if(v.begin(), v.end(), GreaterFind());
+	if (it2 == v.end())
+	{
+		cout << "not find" << endl;
+	}
+	else
+	{
+		cout << "find it: " << *it2<< endl;
+	}
+	//2.查找定义数据类型
+	vector<Person>::iterator it3 = find_if(vp.begin(), vp.end(), Greater20());
+	if (it3 == vp.end())
+	{
+		cout << "not find" << endl;
+	}
+	else
+	{
+		cout << "find it: " << it3->m_Name << " : " << it3->m_Age << endl;
+	}
 }
 
 
