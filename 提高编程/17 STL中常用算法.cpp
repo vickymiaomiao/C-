@@ -13,6 +13,7 @@ using namespace std;
 * transform 搬运容器到另一个容器中
 * find查找算法 返回迭代器
 * find_if(beg,end,_pred) 谓词  按照条件查找
+* adjacent_find(beg,end) 查找相邻重复元素
 */
 //普通函数
 void print01(int val)
@@ -156,6 +157,19 @@ void test_for_each_transform_find()
 	{
 		cout << "find it: " << it3->m_Name << " : " << it3->m_Age << endl;
 	}
+
+	//adjacent_find  查找相邻重复元素
+	vector<int>::iterator pos = adjacent_find(v.begin(), v.end());
+	if (pos == v.end())
+	{
+		cout << "not find" << endl;
+	}
+	else
+	{
+		cout << "find it: " << *pos << endl;
+	}
+
+
 }
 
 
