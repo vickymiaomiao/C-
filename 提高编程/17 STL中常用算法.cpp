@@ -14,6 +14,9 @@ using namespace std;
 * find查找算法 返回迭代器
 * find_if(beg,end,_pred) 谓词  按照条件查找
 * adjacent_find(beg,end) 查找相邻重复元素
+* bool binary_search(beg,end,val) 查找指定元素是否存在  注意在无序序列中不可用 二分查找法
+* count(beg,end,value)  统计元素个数
+* count_if(beg,end,_pred)  按照条件统计元素出现次数
 */
 //普通函数
 void print01(int val)
@@ -172,13 +175,61 @@ void test_for_each_transform_find()
 
 }
 
+void test_binary_count()
+{
+	vector<int>v;
+	for (int i = 0; i < 10; i++)
+	{
+		v.push_back(i);
+	}
+	//查找容器中是否有9   容器必须是有序序列
+	int ret=binary_search(v.begin(), v.end(), 9);
+	if (ret)
+	{
+		cout << "find it" << endl;
+	}
+	else
+	{
+		cout << "not found" << endl;
+	}
+	vector<int>v1;
+	v1.push_back(10);
+	v1.push_back(30);
+	v1.push_back(10);
+	v1.push_back(30);
+	v1.push_back(40);
+	v1.push_back(10);
+	int num = count(v1.begin(), v1.end(), 10);
+	//内置数据类型统计
+	cout << "num of 10 :" << num << endl;
+	//自定义数据类型统计  需配合==重载符使用
+	vector<Person>vp;
+	Person p1("vicky", 30);
+	Person p2("bob", 1);
+	Person p3("bob", 40);
+	Person p4("jerry", 1);
 
+	vp.push_back(p1);
+	vp.push_back(p2);
+	vp.push_back(p3);
+	vp.push_back(p4);
+	Person p("andy", 10);
+	int num1 = count(vp.begin(), vp.end(), p4);
+	cout << "num of p:" << num1 << endl;
+	//count_if   内置数据类型
+	num = count_if(v.begin(), v.end(), GreaterFind());
+	cout << "num of greater 5 : " << num << endl;
+	//自定义数据类型
+	num=  count_if(vp.begin(), vp.end(), Greater20());
+	cout << "num of p.age greater 20 : " << num << endl;
+}
 
 
 
 
 int main()
 {
-	test_for_each_transform_find();
+	//test_for_each_transform_find();
+	test_binary_count();
 	return 0;
 }
