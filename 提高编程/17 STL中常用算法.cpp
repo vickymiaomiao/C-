@@ -45,6 +45,19 @@ public:
 		this->m_Name = name;
 		this->m_Age = age;
 	}
+	//重载一下 ==号 让底层知道如何对比person的数据类型
+	bool operator==(const Person &p)
+	{
+		if (this->m_Name == p.m_Name && this->m_Age == p.m_Age)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+
+	}
 	string m_Name;
 	int m_Age;
 };
@@ -88,6 +101,21 @@ void test_for_each_transform_find()
 	Person p2("bob", 1);
 	Person p3("tom", 1);
 	Person p4("jerry", 1);
+
+	vp.push_back(p1);
+	vp.push_back(p2);
+	vp.push_back(p3);
+	vp.push_back(p4);
+	//查找是否存在P2
+	vector<Person>::iterator it1 = find(vp.begin(), vp.end(), p2);
+	if (it1 == vp.end())
+	{
+		cout << "not find" << endl;
+	}
+	else
+	{
+		cout << "find it: " << it1->m_Name<<" : "<<it1->m_Age<< endl;
+	}
 
 }
 
