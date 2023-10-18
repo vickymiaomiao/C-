@@ -24,6 +24,12 @@ using namespace std;
 * random_shuffle(beg,end)  洗牌，对容器内元素随机调整次序
 * merge(beg1,end1,beg2,end2,dest)  容器元素合并，并存储到另一容器中  必须是有序的容器
 * reverse(beg,end)  反转指定范围的元素
+* 
+* 常用copy和替换算法
+* copy  拷贝
+* replace(beg,end,oldv,newv) 替换
+* replace_if(beg,end,_pred,newv)  满足条件的元素进行替换
+* swap 互换两个容器中的元素
 */
 //普通函数
 void print01(int val)
@@ -271,12 +277,41 @@ void test_sort_random()
 	cout << endl;
 }
 
+void test_copy_replace()
+{
+	vector<int>v1;
+	for (int i = 0; i < 10; i++)
+	{
+		v1.push_back(i);
+	}
+	vector<int>v2;
+	v2.resize(v1.size());  //目标容器提前开辟空间
+	copy(v1.begin(), v1.end(), v2.begin());
+	for_each(v2.begin(), v2.end(), print01);
+	cout << endl;
+	//替换
+	replace(v1.begin(), v1.end(), 4, 100);
+	for_each(v1.begin(), v1.end(), print01);
+	cout << endl;
+	//满足条件的全部替换
+	replace_if(v1.begin(), v1.end(), GreaterFind(), 200);
+	for_each(v1.begin(), v1.end(), print01);
+	cout << endl;
+	//互换两个容器
+	swap(v1, v2);
+	cout << "after swap------------------" << endl;
+	for_each(v1.begin(), v1.end(), print01);
+	cout << endl;
+	for_each(v2.begin(), v2.end(), print01);
+	cout << endl;
+
+}
 
 int main()
 {
-
 	//test_for_each_transform_find();
 	//test_binary_count();
-	test_sort_random();
+	//test_sort_random();
+	test_copy_replace();
 	return 0;
 }
