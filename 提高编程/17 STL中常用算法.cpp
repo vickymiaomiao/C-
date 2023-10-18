@@ -22,7 +22,7 @@ using namespace std;
 * 常用排序算法
 * sort(beg,end,_pred) 对容器内元素进行排序
 * random_shuffle(beg,end)  洗牌，对容器内元素随机调整次序
-* merge  容器元素合并，并存储到另一容器中
+* merge(beg1,end1,beg2,end2,dest)  容器元素合并，并存储到另一容器中  必须是有序的容器
 * reverse  反转指定范围的元素
 */
 //普通函数
@@ -245,12 +245,25 @@ void test_sort_random()
 	cout << endl;
 	//改变为降序
 	//greater为内建函数对象
-	sort(v.begin(), v.end(), greater<int>());
-	for_each(v.begin(), v.end(), print01);
-	cout << endl;
-	//打乱顺序
-	random_shuffle(v.begin(), v.end());
-	for_each(v.begin(), v.end(), print01);
+	//sort(v.begin(), v.end(), greater<int>());
+	//for_each(v.begin(), v.end(), print01);
+	//cout << endl;
+	////打乱顺序
+	//random_shuffle(v.begin(), v.end());
+	//for_each(v.begin(), v.end(), print01);
+	//cout << endl;
+	//merge
+	vector<int>v1;
+	for (int i = 0; i < 10; i++)
+	{
+		v1.push_back(i);
+	}
+	//目标容器
+	vector<int>vt;
+	//给目标容器分配空间
+	vt.resize(v.size() + v1.size());
+	merge(v.begin(), v.end(), v1.begin(), v1.end(), vt.begin());
+	for_each(vt.begin(), vt.end(), print01);
 	cout << endl;
 }
 
