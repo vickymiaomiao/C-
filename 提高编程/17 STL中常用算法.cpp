@@ -4,6 +4,7 @@
 #include <numeric>
 #include <functional>
 #include <vector>
+#include <ctime>
 using namespace std;
 
 
@@ -20,7 +21,7 @@ using namespace std;
 * 
 * 常用排序算法
 * sort(beg,end,_pred) 对容器内元素进行排序
-* random_shuffle  洗牌，对容器内元素随机调整次序
+* random_shuffle(beg,end)  洗牌，对容器内元素随机调整次序
 * merge  容器元素合并，并存储到另一容器中
 * reverse  反转指定范围的元素
 */
@@ -232,6 +233,7 @@ void test_binary_count()
 
 void test_sort_random()
 {
+	srand((unsigned int)time(NULL));
 	vector<int>v;
 	v.push_back(10);
 	v.push_back(50);
@@ -246,11 +248,16 @@ void test_sort_random()
 	sort(v.begin(), v.end(), greater<int>());
 	for_each(v.begin(), v.end(), print01);
 	cout << endl;
+	//打乱顺序
+	random_shuffle(v.begin(), v.end());
+	for_each(v.begin(), v.end(), print01);
+	cout << endl;
 }
 
 
 int main()
 {
+
 	//test_for_each_transform_find();
 	//test_binary_count();
 	test_sort_random();
