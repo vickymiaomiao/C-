@@ -23,7 +23,7 @@ using namespace std;
 * sort(beg,end,_pred) 对容器内元素进行排序
 * random_shuffle(beg,end)  洗牌，对容器内元素随机调整次序
 * merge(beg1,end1,beg2,end2,dest)  容器元素合并，并存储到另一容器中  必须是有序的容器
-* reverse  反转指定范围的元素
+* reverse(beg,end)  反转指定范围的元素
 */
 //普通函数
 void print01(int val)
@@ -264,6 +264,10 @@ void test_sort_random()
 	vt.resize(v.size() + v1.size());
 	merge(v.begin(), v.end(), v1.begin(), v1.end(), vt.begin());
 	for_each(vt.begin(), vt.end(), print01);
+	cout << endl;
+	//reverse   元素进行反转
+	reverse(v.begin(), v.end());
+	for_each(v.begin(), v.end(), print01);
 	cout << endl;
 }
 
