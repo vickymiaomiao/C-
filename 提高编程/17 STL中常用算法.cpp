@@ -17,6 +17,12 @@ using namespace std;
 * bool binary_search(beg,end,val) 查找指定元素是否存在  注意在无序序列中不可用 二分查找法
 * count(beg,end,value)  统计元素个数
 * count_if(beg,end,_pred)  按照条件统计元素出现次数
+* 
+* 常用排序算法
+* sort(beg,end,_pred) 对容器内元素进行排序
+* random_shuffle  洗牌，对容器内元素随机调整次序
+* merge  容器元素合并，并存储到另一容器中
+* reverse  反转指定范围的元素
 */
 //普通函数
 void print01(int val)
@@ -224,12 +230,29 @@ void test_binary_count()
 	cout << "num of p.age greater 20 : " << num << endl;
 }
 
-
+void test_sort_random()
+{
+	vector<int>v;
+	v.push_back(10);
+	v.push_back(50);
+	v.push_back(30);
+	v.push_back(60);
+	v.push_back(20);
+	sort(v.begin(), v.end());
+	for_each(v.begin(), v.end(), print01);
+	cout << endl;
+	//改变为降序
+	//greater为内建函数对象
+	sort(v.begin(), v.end(), greater<int>());
+	for_each(v.begin(), v.end(), print01);
+	cout << endl;
+}
 
 
 int main()
 {
 	//test_for_each_transform_find();
-	test_binary_count();
+	//test_binary_count();
+	test_sort_random();
 	return 0;
 }
