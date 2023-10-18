@@ -5,6 +5,7 @@
 #include <functional>
 #include <vector>
 #include <ctime>
+#include <numeric>
 using namespace std;
 
 
@@ -30,6 +31,11 @@ using namespace std;
 * replace(beg,end,oldv,newv) 替换
 * replace_if(beg,end,_pred,newv)  满足条件的元素进行替换
 * swap 互换两个容器中的元素
+* 
+* 常用算术生成算法
+* 算术生成算法属于小型算法，使用时包含的头文件为 #include <numric>
+* accumulate(beg,end,value) 计算容器元素累计总和  value为起始累加值
+* fill 向容器中添加元素
 */
 //普通函数
 void print01(int val)
@@ -307,11 +313,29 @@ void test_copy_replace()
 
 }
 
+void test_accumulate_fill()
+{
+	vector<int>v1;
+	for (int i = 0; i <= 100; i++)
+	{
+		v1.push_back(i);
+	}
+	//累加
+	int total = accumulate(v1.begin(), v1.end(), 0);  //参数3为起始的累加值
+	cout << "total = " << total << endl;
+	//填充
+	vector<int>v2;
+	v2.resize(10);
+	fill(v2.begin(), v2.end(), 200);
+	for_each(v2.begin(), v2.end(), print01);
+	cout << endl;
+}
 int main()
 {
 	//test_for_each_transform_find();
 	//test_binary_count();
 	//test_sort_random();
-	test_copy_replace();
+	//test_copy_replace();
+	test_accumulate_fill();
 	return 0;
 }
