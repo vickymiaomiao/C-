@@ -33,9 +33,15 @@ using namespace std;
 * swap 互换两个容器中的元素
 * 
 * 常用算术生成算法
-* 算术生成算法属于小型算法，使用时包含的头文件为 #include <numric>
+* 算术生成算法属于小型算法，使用时包含的头文件为 #include <numeric>
 * accumulate(beg,end,value) 计算容器元素累计总和  value为起始累加值
-* fill 向容器中添加元素
+* fill(beg,end,value) 向容器中添加元素 value为填充的值
+* 
+* 常用的集合算法
+* set_intersection(beg1,end1,beg2,end2,dest)  求两个容器的交集  两个容器必须是有序序列
+* set_union 求两个容器的并集
+* set_difference 求两个容器的差集
+* 
 */
 //普通函数
 void print01(int val)
@@ -330,12 +336,39 @@ void test_accumulate_fill()
 	for_each(v2.begin(), v2.end(), print01);
 	cout << endl;
 }
+
+void test_set()
+{
+	vector<int>v1;
+	vector<int>v2;
+	for (int i = 0; i <= 10; i++)
+	{
+		v1.push_back(i);
+		v2.push_back(i + 5);
+	}
+	vector<int>vt;
+	//目标容器提前开辟空间
+	//最特殊的情况两个大容器包含了小容器，开辟空间取小容器的size
+	vt.resize(min(v1.size(), v2.size()));//求最小值
+	//获取交集   返回交集最后一个迭代器的位置
+	vector<int>::iterator itend=set_intersection(v1.begin(), v1.end(), v2.begin(), v2.end(), vt.begin());
+	for_each(vt.begin(), itend, print01);
+	cout << endl;
+
+	//获取冰机
+
+
+
+}
+
+
 int main()
 {
 	//test_for_each_transform_find();
 	//test_binary_count();
 	//test_sort_random();
 	//test_copy_replace();
-	test_accumulate_fill();
+	//test_accumulate_fill();
+	test_set();
 	return 0;
 }
