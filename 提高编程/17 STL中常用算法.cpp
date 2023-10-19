@@ -39,7 +39,7 @@ using namespace std;
 * 
 * 常用的集合算法
 * set_intersection(beg1,end1,beg2,end2,dest)  求两个容器的交集  两个容器必须是有序序列
-* set_union 求两个容器的并集
+* set_union(beg1,end1,beg2,end2,dest) 求两个容器的并集  也必须是有序序列
 * set_difference 求两个容器的差集
 * 
 */
@@ -354,10 +354,26 @@ void test_set()
 	vector<int>::iterator itend=set_intersection(v1.begin(), v1.end(), v2.begin(), v2.end(), vt.begin());
 	for_each(vt.begin(), itend, print01);
 	cout << endl;
+	
+	//获取并集
+	//开辟最大内存空间
+	vt.resize(v1.size() + v2.size());
+	vector<int>::iterator itend1 = set_union(v1.begin(), v1.end(), v2.begin(), v2.end(), vt.begin());
+	for_each(vt.begin(), itend1, print01);
+	cout << endl;
 
-	//获取冰机
+	//获取差集  返回最后一个元素迭代器的位置
+	//目标容器的空间为最大的容器的size
+	vt.resize(max(v1.size() , v2.size()));
+	cout << "v1和v2的差集：" << endl;
+	vector<int>::iterator itend2 = set_difference(v1.begin(), v1.end(), v2.begin(), v2.end(), vt.begin());
+	for_each(vt.begin(), itend2, print01);
+	cout << endl;
 
-
+	cout << "v2和v1的差集：" << endl;
+	vector<int>::iterator itend3 = set_difference(v2.begin(), v2.end(), v1.begin(), v1.end(), vt.begin());
+	for_each(vt.begin(), itend3, print01);
+	cout << endl;
 
 }
 
