@@ -1,8 +1,11 @@
 #include "speechManager.h"
+#include <algorithm>
 
 SpeechManager::SpeechManager()
 {
+	//初始化属性
 	this->initSpeech();
+	//创建选手
 	this->creatSpeaker();
 }
 
@@ -53,7 +56,7 @@ void SpeechManager::creatSpeaker()
 		sp.m_Name = name;
 		for (int j = 0; j < 2; j++)
 		{
-			sp.m_Score[i] = 0;
+			sp.m_Score[j] = 0;
 		}
 		//将选手编号插入到V1中
 		this->v1.push_back(10001 + i);
@@ -61,6 +64,65 @@ void SpeechManager::creatSpeaker()
 		this->m_s.insert(make_pair(10001 + i, sp));
 	}
 }
+
+//开始比赛
+void SpeechManager::startSpeach()
+{
+	//第一轮比赛
+	//1.抽签
+	this->speechDraw();
+
+	//2.比赛
+
+
+	//3.显示晋级结果
+
+
+	//第二轮比赛
+
+	//抽签
+
+
+	//比赛
+
+
+	//显示最终结果
+
+	//保存分数
+
+
+
+}
+
+//抽签
+void SpeechManager::speechDraw()
+{
+	cout << "第<<" << this->m_Index << ">>轮比赛选手正在抽签" << endl;
+	cout << "--------------------" << endl;
+	cout << "抽签后的顺序如下：" << endl;
+	if (this->m_Index == 1)
+	{
+		random_shuffle(this->v1.begin(), this->v1.end());
+		for (vector<int>::iterator it = this->v1.begin(); it != this->v1.end(); it++)
+		{
+			cout << *it << " ";
+		}
+		cout << endl;
+	}
+	else
+	{
+		random_shuffle(this->v2.begin(), this->v2.end());
+		for (vector<int>::iterator it = this->v2.begin(); it != this->v2.end(); it++)
+		{
+			cout << *it << " ";
+		}
+		cout << endl;
+	}
+	cout << "-------------------" << endl;
+	system("pause");
+	cout << endl;
+}
+
 
 
 SpeechManager::~SpeechManager()

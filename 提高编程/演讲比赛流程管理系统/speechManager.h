@@ -38,6 +38,13 @@ public:
 	//创建选手
 	void creatSpeaker();
 
+	//开始比赛
+	void startSpeach();
+
+	//抽签
+	void speechDraw();
+
+
 	//析构函数
 	~SpeechManager();
 

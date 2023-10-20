@@ -7,7 +7,14 @@ int main()
 {
 	//创建管理类对象
 	SpeechManager sm;
-	
+	//测试创建的12名选手
+	//for (map<int, Speaker>::iterator it = sm.m_s.begin(); it != sm.m_s.end(); it++)
+	//{
+	//	cout << "编号：" << it->first << "  name : " << it->second.m_Name << "  score : "
+	//		<< it->second.m_Score[0] <<  endl;
+	//}
+
+
 	int choice = 0;
 	while (true)
 	{
@@ -17,6 +24,7 @@ int main()
 		switch (choice)
 		{
 		case 1:   //开始比赛
+			sm.startSpeach();
 			break;
 		case 2:   //查看比赛记录
 			break;
