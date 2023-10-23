@@ -32,6 +32,17 @@ public:
 	//记录比赛轮数
 	int m_Index;
 
+	//文件为空的标志
+	bool fileIsEmpty;
+
+	//往届记录
+	map<int, vector<string>> m_Record;
+
+
+	//读取记录
+	void loadRecord();
+
+
 	//初始化属性
 	void initSpeech();
 
@@ -43,6 +54,21 @@ public:
 
 	//抽签
 	void speechDraw();
+
+	//比赛
+	void speechContest();
+
+	//显示比赛结果
+	void showScore();
+
+	//保存分数
+	void saveRecord();
+
+	//显示往届得分
+	void showRecord();
+
+	//清空记录
+	void clearRecord();
 
 
 	//析构函数

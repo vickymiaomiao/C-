@@ -13,7 +13,8 @@ int main()
 	//	cout << "编号：" << it->first << "  name : " << it->second.m_Name << "  score : "
 	//		<< it->second.m_Score[0] <<  endl;
 	//}
-
+	//添加随机数的种子
+	srand((unsigned int)time(NULL));
 
 	int choice = 0;
 	while (true)
@@ -27,8 +28,10 @@ int main()
 			sm.startSpeach();
 			break;
 		case 2:   //查看比赛记录
+			sm.showRecord();
 			break;
 		case 3:    //清空比赛记录
+			sm.clearRecord();
 			break;
 		case 0:
 			sm.exitSystem();  //退出app
