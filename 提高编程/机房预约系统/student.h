@@ -1,7 +1,10 @@
 #pragma once
 #include <iostream>
+#include <vector>
 using namespace std;
 #include "identity.h"
+#include "computerRoom.h"
+#include "orderFile.h"
 
 class Student :public Identity
 {
@@ -29,5 +32,8 @@ public:
 
 	//学生学号
 	int m_Id;
+
+	//机房容器
+	vector<ComputerRoom> vcom;
 
 };

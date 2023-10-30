@@ -54,6 +54,50 @@ void managerMenu(Identity* &manager)
 	}
 }
 
+////学生菜单
+void studentMenu(Identity*& student)
+{
+	while (true)
+	{
+		//管理员菜单
+		student->operMenu();
+
+		Student* stu = (Student*)student;
+
+		int select = 0;
+		cin >> select;
+
+		if (select == 1)
+		{
+			cout << "申请预约" << endl;
+			stu->applyOrder();
+		}
+		else if (select == 2)
+		{
+			cout << "查看预约" << endl;
+			stu->showMyOrder();
+		}
+		else if (select == 3)
+		{
+			cout << "查看所有预约" << endl;
+			stu->showAllOrder();
+		}
+		else if (select == 4)
+		{
+			cout << "取消预约" << endl;
+			stu->cancelOrder();
+		}
+		else
+		{
+			delete student;
+			cout << "注销成功" << endl;
+			system("pause");
+			system("cls");
+			return;
+
+		}
+	}
+}
 
 
 //全局函数实现登录
@@ -102,6 +146,7 @@ void LoginIn(string filename, int type)
 				system("cls");
 				person = new Student(id, name, pwd);
 				//进入学生身份子菜单
+				studentMenu(person);
 				return;
 			}
 		}
