@@ -3,6 +3,8 @@
 #include <iostream>
 using namespace std;
 #include "identity.h"
+#include "orderFile.h"
+#include <vector>
 
 class Teacher :public Identity
 {
@@ -19,7 +21,7 @@ public:
 	//查看所有预约
 	void showAllOrder();
 
-	//取消预约
+	//审核预约
 	void vaildOrder();
 
 	//学生学号

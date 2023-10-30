@@ -99,6 +99,40 @@ void studentMenu(Identity*& student)
 	}
 }
 
+//教师菜单
+void teacherMenu(Identity*& teacher)
+{
+	while (true)
+	{
+		//教师菜单
+		teacher->operMenu();
+
+		Teacher* tea = (Teacher*)teacher;
+
+		int select = 0;
+		cin >> select;
+
+		if (select == 1)
+		{
+			cout << "查看所有预约" << endl;
+			tea->showAllOrder();
+		}
+		else if (select == 2)
+		{
+			cout << "审核预约" << endl;
+			tea->vaildOrder();
+		}
+		else
+		{
+			delete teacher;
+			cout << "注销成功" << endl;
+			system("pause");
+			system("cls");
+			return;
+
+		}
+	}
+}
 
 //全局函数实现登录
 void LoginIn(string filename, int type)
@@ -166,6 +200,7 @@ void LoginIn(string filename, int type)
 				system("cls");
 				person = new Teacher(id, name, pwd);
 				//进入教师身份子菜单
+				teacherMenu(person);
 				return;
 			}
 		}

@@ -1,4 +1,4 @@
-date:1 interval:上午 stuId:1 stuName:vicky roomId:1 status:0
-date:3 interval:1 stuId:2 stuName:andy roomId:1 status:1
+date:1 interval:上午 stuId:1 stuName:vicky roomId:1 status:1
+date:3 interval:上午 stuId:2 stuName:andy roomId:1 status:2
 date:5 interval:2 stuId:3 stuName:grace roomId:1 status:-1
-date:4 interval:上午 stuId:1 stuName:vicky roomId:1 status:1
+date:4 interval:上午 stuId:1 stuName:vicky roomId:1 status:2
